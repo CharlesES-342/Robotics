@@ -1,0 +1,75 @@
+\documentclass[12pt]{article} 
+
+% --- Packages for formatting ---
+\usepackage[utf8]{inputenc} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{graphicx} 
+\usepackage{hyperref} 
+
+% --- Document Information ---
+\title{Robotics Project Report}
+\author{F331073}
+\date{\today}
+
+\begin{document}
+
+\maketitle 
+
+\tableofcontents 
+\newpage
+
+\section{Abstract}
+There are many different ways to tackle this project, all of which could
+result in a successful robot. In this report, we will explore the various
+approaches and methodologies that can be employed to navigate the circuit
+as quickly as possible.
+
+\section{Introduction}
+
+\section{Related Works} 
+
+\section{Datasets}
+
+\subsection{Data Collection} 
+There are many different approaches to collecting data for this project. Anything from
+manual image collection to simulations, data can be gathered in many ways.
+I chose to opt for a more manual approach where I made use of my previously defined
+movement functions---using w/a/s/d---to control the robot around the track. To allow
+the robot to then record the data, I made use of threading. This allowed for parallel
+recording and motion operations. 
+
+Initially, I was unsure on what information would be relevant to the project and so I
+thought the best decision was to record everything. My initial thoughts were to only
+take the image portion of the RGBD data; however, after further consideration, the
+depth data could also be useful for refining the detection region of the image and
+in turn result in a faster model due to a refined search space.
+Additionally, my actions could also be used as a form of training data, allowing the
+robot to learn from my corrections and inputs. This could be particularly useful in more
+tricky situations where basic logic would fail, and would allow for the potential for an
+Imitation Learning approach.
+
+Initially, data was extracted as .sov2 files (containing both the image and depth perception
+outputs) as well as .csv files (containing the action data). These were timestamped to 
+allow for consistency between actions and the vision aspects.
+
+\subsection{Processing}
+From here, the .sov2 files were processed to extract independent video and depth data. Video
+was chosen as it gave the greatest versatility (and easiest viewing for humans) compared
+to individual image extraction. While images are easier to process, the possibility to later
+take frames while reducing the visual number of files seemed like the better option---at least
+for now.
+
+The depth images were extracted as a compilation of $32 \times 32$ images. These could
+then be used to identify the floor (represented as a darker blue section) which would aid in
+refining the search space for the yellow line (the path). However, during collection, I
+noticed that the shininess of the floor caused a lot of noise in the depth images. This could
+make it more difficult to identify the floor and thus may be useless. However, also during
+image capture, I noticed that the rope that we are to follow was correctly identified as
+being closer (in dark blue), and so it may be possible to use this to help reinforce the
+line's location.
+
+\section{Experiments}
+
+\section{Conclusion}
+
+\end{document}
